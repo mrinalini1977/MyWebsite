@@ -1,0 +1,16 @@
+name: "personal-website"
+output_dir: "."
+navbar:
+  title: "Personal-Website" 
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About Me"
+      href: about.html
+  right:
+    - icon: fa-github fa-2x
+      href: https://github.com/mrinalini1977
+    - icon: fa-linkedin fa-2x
+      href: https://www.linkedin.com/in/mrinaliniakabbur/
+      
+    
