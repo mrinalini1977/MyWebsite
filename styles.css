@@ -1,0 +1,16 @@
+img[src="profile.jpg"]{
+   width: 250px;
+   display: block;
+  margin: 0 auto;
+ }
+body {
+  font-family: Verdana, Geneva, sans-serif;
+ background-image: url("images/background_img.gif");
+}
+
+h1{
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+.main-container { max-width: 1250px; }

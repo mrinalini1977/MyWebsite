@@ -1,16 +1,27 @@
-name: "personal-website"
+name: "Mrinalini Kabbur"
 output_dir: "."
 navbar:
-  title: "Personal-Website" 
+  title: "Home"
   left:
-    - text: "Home"
-      href: index.html
-    - text: "About Me"
+    - text: "About"
       href: about.html
+    - text: "Research"
+      href: research.html 
+    - text: "Statistical Support"
+      href: statistics.html
   right:
     - icon: fa-github fa-2x
       href: https://github.com/mrinalini1977
     - icon: fa-linkedin fa-2x
       href: https://www.linkedin.com/in/mrinaliniakabbur/
-      
+output:
+ html_document:
+  theme: yeti
+  highlight: textmate
+#  include:
+#    after_body: footer.html
+  css: styles.css
+
+
+         
     

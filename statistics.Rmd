@@ -1,0 +1,55 @@
+---
+title: "Statistical Support"
+---
+
+<style>
+#header {
+padding-top: 20px;
+padding-bottom: 20px;
+}
+
+.subHeader {
+text-transform: uppercase;
+padding-bottom: 0px;
+padding-top: 10px;
+}
+
+.subDescr
+{
+padding-left: 20px;
+padding-top: 0px;
+}
+</style>
+
+<html>
+<body>
+
+<div id = "header">
+  <font size="+1">I have provided statistical support for the following studies </font> </div>
+
+<div class = "subHeader" id = "subHead_1">
+1) Atrophic Rhinitis with maggot infestation- a demographic study
+</div>
+<div class = "subDescr" id = "subDescr1"><p>This study explores maggots infestation among  Atrophic Rhinitis cases. The descriptive analysis included gender and age distribution of maggots infested patients, seasonal variation in the number of infested cases and clinical (Unilaterality\\bilaterality) presentation of the disease.  </p>
+</div>
+<div class = "subHeader" id = "subHead_2">
+2) Rapid tissue processing technique- a novel method using methyl salicylate </div>
+<div class = "subDescr" id = "subDescr2">
+<p>The study Assesses efficacy of a new tissue processing technique that has better effective costs and rapid (or quick) turnaround time. The quality of staining and shrinkage values of this rapid processing tachnique are compared with those from the routine tissue processing technique. Welch's T-test was used to perform the analysis.</p></div>
+
+<div class = "subHeader" id = "subHead_3">
+3) DETECTION OF MICROMETASTASIS IN CLINICALLY NON-METASTATIC LYMPHNODES BY SIMPLE HISTOLOGICAL METHOD </div>
+<div class = "subDescr" id = "subDescr3"> <p>
+The retrospective study compares the efficacy of three different stains in the detection of micromestasis in clinically non-metastatic lymphnodes. Descriptive analysis was done to compare the three stains in detecting micrometastasis positivity, distribution of positively detected tissue between Level 1 and Level 2 lymph nodes and the gender distribution of positive detections. Chi-square test was performed to find Association between Histologic grading and micrometastasis positivity.</p></div>
+
+<div class = "subHeader" id = "subHead_4">
+4) RAPID AND VIABLE DETECTION METHOD OF MITOTIC FIGURES IN ORAL SQUAMOUS CELL CARCINOMA (OSCC)- A COMPARATIVE STUDY</div>
+<div class = "subDescr" id = "subDescr4"> <p>
+The retrospective study compares three staining techniques in detecting mitotic figures in OSCC.The efficacy of the three stains was compared using Kruskal-Wallis non-parametric test. For post-hoc tests, pairwise wilcoxon test was used.</p></div>
+
+<div class = "subHeader" id = "subHead_5">
+5) ASSESSMENT OF TUMOUR ASSOCIATED TISSUE EOSINOPHILS (TATE) IN ORAL SQUAMOUS CELL CARCINOMA (OSCC) </div>
+<div class = "subDescr" id = "subDescr5"> <p>
+This retrospective study compares the TATE count in OSCC and normal tissue and also among different grades of OSCC. The OSCC and normal tissue comparison is performed using the Mann Whitney U parametric test while the comparison among different grades of OSCC is performed using Kruskall Wallis test.</p></div>
+</body>
+</html>

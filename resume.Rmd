@@ -1,0 +1,28 @@
+---
+title: "Resume"
+---
+---
+
+<style>
+#divText {
+width:700px;
+margin: auto;
+position: absolute;
+}
+#divText p{
+width: 700px;
+margin-right: auto;
+margin-left: auto;
+max-width: 80%;
+font-size: 30px;
+font-family: Bookman Old Style;
+font-weight: bold
+}
+</style>
+
+<html>
+<div id="divText">
+<p>
+You can find my latest resume <a href = "text\resume.pdf"> here </a>
+</p>
+</div>

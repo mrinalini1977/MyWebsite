@@ -1,5 +1,53 @@
 ---
-title: "Personal Website"
+title: "Mrinalini's Website"
+---
 ---
 
-Hello, World!
+<style>
+
+#divWrapper {
+width:700px;
+margin: auto;
+position: absolute;
+top:50%;
+left: 50%;
+padding:20px;
+-ms-transform: translateX(-50%) translateY(-50%);
+-webkit-transform: translate(-50%,-50%);
+transform: translate(-50%,-50);
+}
+
+#divImg {
+width: 700px;
+text-aligh:center;
+}
+
+#divImg img{
+padding-top: 20px;
+padding-bottom: 20px;
+}
+
+#divText p{
+width: 700px;
+margin-right: auto;
+margin-left: auto;
+max-width: 80%;
+font-size: 30px;
+font-family: Bookman Old Style;
+font-weight: bold
+}
+
+#divText p{
+padding-top: 40px;
+padding-bottom: 20px;
+}
+</style>
+
+<html>
+<a href="research.html">
+<div id = "divWrapper">
+<div id = "divImg"> <img src = "images/my_portfolio_1.png" width = "500" height = "100"></div>
+<div id = "divText"> <p>Data Science For A Better Future</p> </div>
+</a>
+</div>>
+</html>

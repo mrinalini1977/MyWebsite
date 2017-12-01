@@ -1,0 +1,333 @@
+<html>
+<style>
+.button {
+    border: none;
+    color: blue;
+    background-color: transparent;
+    outline: none;
+
+  }
+  </style>
+
+<body>
+
+<button class = "button" onclick="goBack()">Back</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+
+
+
+# **Cluster Analysis Of Education Data In Karnataka**
+Author: Mrinalini Kabbur
+Date: November 2, 2017
+
+### **Introduction**
+Primary school Enrolment in India has seen a big increase from 79% in 2000 and to 93% in 2014.
+Type of schooling also has changed. Percentage of kids going to private schools has almost doubled in the last 15 years to 35% in 2014. This in spite of the fact that the private schools cost four to five times more. The general notion is that private schools offer better quality of education.
+The primary school dropout rate is 4.34% in 2014, which is at the lowest ever.
+RTE Act passed in 2009 took a big step in improving the educational inputs. It declared public primary education a human right for all the children in the age group 6-14. It Established standards for school infrastructure, learning materials, teacher qualifications and student admission and also instituted private school quotas for disadvantaged children. The expenditure on education increased manifold through Sarva Shikshana Abhiyana (SSA) funds. SSA components include School maintenance grant (SMG) for school facilities, School Development grant (SDG) for day to day operation and administration and Teaching and learning material grant (TLM) to purchase teaching aid other than the textbooks. </br>
+This study looks at how RTE guidelines along with private schooling and decrease in out of school children have impacted the ultimate goal of learning outcomes in primary school education. Along with the above listed inputs, socio-economic factors like literacy rate, caste distribution of enrolled children and teachers, Gender distribution of children and teachers as well as medium of instruction as in English or mother tongue are also considered.
+
+### **Data and Methodology**
+This study uses three sources of Data. The first is the District Information System for Education (DISE). This database is developed by National University for Educational Planning and Administration (NUEPA) and records information about all the schools in India. The information collected includes Household characterisitcs such as socio-economic status, school infrastructure, Teacher and Children Characteristics such as age gender, caste, religion etc.  The second source is ASER that stands for Annual Status of Education Report. This is an annual survey that aims to provide reliable estimates of children's enrolment and basic learning levels for each district and state in India. Thirdly, RTE compliance score is pulled from socialcops.com website. Here the RTE values from the DISE database are extracted and an aggregated score is computed that assesses the level of RTE implementation in each district. The data from all the sources is gathered for the year 2013-14. The study uses primary school data for 26 districts of Karnataka. Districts of Ramanagar, Yadgiri, Chikkaballapur and Bangalore Urban are excluded as ASER survey did not collect learning outcomes for these districts. </br>
+For the study, we use cluster analysis, a data mining technique based on unsupervised learning. Unsupervised learning explores 'unlabelled' or 'unclassified' data to find hidden patterns. There is no target attribute here. Cluster analysis groups subjects that depict similar characteristics.Agglomerative hierarchical clustering technique is chosen here as the number of observations are less. Among various agglomerative procedures, Wards's method is used. This method merges objects that increases the within cluster variance to the lowest possible degree.</br>
+The study performs cluster analysis on 16 parameters gathered from the three data sources mentioned above. We group districts that are similar in terms of characteristics.Also, among the different variables used for analysis, more weightage is given to the 2 learning outcome parameters. The reason being that we want the districts to be distinguishable based on their performance.</br>
+The cluster analysis is performed using R programming language, an open source software for statistical computations and graphics. Agglomerative Hierarchical cluster analysis is provided in R through the hclust function.
+
+### **Data Exploration**
+District is the unit of analysis here. The data exploration is done using box plots and summary function. The ASER survey 2014 did not collect learning outcome data for the newly formed districts of Ramanagar, Chikkaballapur and Yadgiri. Hence, they are integrated with their previous districts.  
+The boxplots detected outliers for the variables, girl boy ratio, gender distribution of teachers, Not in School children, Private School Enrolment and reading level. Upon further inspection, the values are found to be appropriate and no outlier treatment is applied. 
+
+```{r include=FALSE}
+##### Import libraries #####
+library(cluster)
+library(factoextra)
+library(NbClust)
+library(sqldf)
+library(rgdal)
+library(maptools)
+library(ggplot2)
+library(tmap)
+library(sp)
+library(ggmap)
+library(raster)
+library(knitr)
+
+##### Read data #####
+
+setwd("C:/work/personal_site")
+
+input_data <- read.csv("C:/work/personal_site/research/cluster_edu_karnataka/data/District_Data.csv")
+
+##### Explore Data #####
+
+dim(input_data)
+
+str(input_data)
+
+summary(input_data)
+
+colSums(is.na(input_data))
+
+# overall literacy (1 outlier )
+boxplot(input_data$Overall_Literacy....)
+summary(input_data$Overall_Literacy....)
+
+#female literacy
+boxplot(input_data$Fem_Literacy....)
+summary(input_data$Fem_Literacy....)
+
+#SC enrolment
+boxplot(input_data$SC_Enrol...)
+summary(input_data$SC_Enrol...)
+
+#ST enrolment
+boxplot(input_data$ST_Enrol...)
+summary(input_data$ST_Enrol...)
+
+#OBC enrolment ( two outliers - fixed, data issue )
+boxplot(input_data$OBC_Enrol....)
+summary(input_data$OBC_Enrol....)
+
+#Muslim enrolment ( three outliers )
+boxplot(input_data$Muslim_Enrol....)
+summary(input_data$Muslim_Enrol....)
+
+#girl boy ratio ( 2 outliers )
+boxplot(input_data$Girl_.Boy_Ratio)
+summary(input_data$Girl_.Boy_Ratio)
+
+# RTE Score (one outlier )
+boxplot(input_data$RTE_Score)
+summary(input_data$RTE_Score)
+
+# Teacher gender ratio ( 2 outlers )
+boxplot(input_data$Gender_ratio_Tch)
+summary(input_data$Gender_ratio_Tch)
+
+# Medium Instruction Non Englsih
+boxplot(input_data$Med_Instr_Non_Eng...)
+summary(input_data$Med_Instr_Non_Eng...)
+
+# Medium Instruction Englsih
+boxplot(input_data$Med_Instr_Eng...)
+summary(input_data$Med_Instr_Eng...)
+
+# Not in School (1 outlier )
+boxplot(input_data$Not_In_School...)
+summary(input_data$Not_In_School...)
+
+#Private School ( 1 outlier )
+boxplot(input_data$Pvt_School...)
+summary(input_data$Pvt_School...)
+
+# read ( 1 outlier )
+boxplot(input_data$X3to5_Can_read_1text...)
+summary(input_data$X3to5_Can_read_1text...)
+
+# subtract
+boxplot(input_data$X3to5_Can_Subtract....)
+summary(input_data$X3to5_Can_Subtract....)
+
+```
+### **Data Preparation**
+In order to do an effective clustering, we need to adjust the variables to a common scale. This is called 'scaling'. Among the variables used for this study, all the values are percentages except girl boy ratio, gender distribution of teachers and RTE compliance score. Common scaling can be achieved by converting these values to percentages as well. However, we use scale function that standardizes all the values to z-scores.
+Next step is 'Weighting'. Since we want the clusters to be distinguishable based on their performance, we add more weightage to the corresponding values. We augment the outcome
+values by three times.
+
+```{r include=FALSE}
+
+##### Prepare Data #####
+
+## ASER Data for the year 2014 was missing for Chikkaballapur,
+# Ramanagar and Yadgiri. The mssing data replaced with ASER data from 2016
+
+##Subsetting the data ##
+#The subset does not include the column for district names#
+
+input_data_sub <- input_data[, -1]
+
+  
+## Scaling the data ##
+input_data_scaled <- scale(input_data_sub)
+
+## adding weights to reading and maths performance colums ##
+
+input_data_scaled[,16] = 3 * input_data_scaled[,16] #3to5_Can_read_1text(%)
+
+input_data_scaled[,17] = 3 * input_data_scaled[,17] #3to5_Can_Subtract (%)
+
+input_data_scaled[,6] = .2 * input_data_scaled[,6] #3to5_Can_Subtract (%)
+##
+
+```
+### **Build Model**
+To determine optimum number of clusters, elbow method, silhouette method and gap statistics are used.  Based on their output, we decide 3 to be the optimum number. 
+The agglomerative hierarchical clustering is built using hclust function . hclust requires us to provide the data in the form of a distance matrix. We do this by using dist function which computes the Euclidian distance between the data points.   The hclust also requires merging criterion to be specified. Here, we use ward's method 'Ward.D2'.
+The algorithm generates the following dendogram.
+
+```{r include=FALSE}
+
+##### Build a Model #####
+# Hierarchical clustering is used for creating the model. #
+
+## Finding optimal number of clusters ##
+
+#elbow method
+fviz_nbclust(input_data_scaled,  hcut, method = "wss") +
+  geom_vline(xintercept = 3, linetype = 2)
+
+#Average silhouette method #
+
+fviz_nbclust(input_data_scaled, hcut, method = "silhouette",
+             hc_method = "ward.D2")
+
+#gap statistics
+# Compute gap statistic
+set.seed(123)
+gap_stat <- clusGap(input_data_scaled, FUN = hcut, K.max = 5, B = 60)
+
+# Plot gap statistic
+fviz_gap_stat(gap_stat)
+
+##Converting distances into a matrix and writing it into a csv file ##
+d <- dist(input_data_scaled, method = "euclidean")
+
+
+## Applying the algorithm ##
+
+clust <-hclust (d, method = "ward.D2")
+clust$labels <- input_data$District
+
+```
+```{r echo=FALSE, fig.width=9, fig.height=3}
+## Plotting dendogram ##
+
+plot(as.dendrogram(clust))
+
+```
+
+We can see from the figure that the best choices for total number of clusters are either 2 or 3:
+
+```{r echo=FALSE, fig.width=9, fig.height=3}
+## Plotting dendogram ##
+
+plot(as.dendrogram(clust))
+rect.hclust(clust, 3)
+
+## Slicing the dendogram to get finite number of clusters ##
+
+groups <- cutree(clust, k=3)
+
+## attach cluster number and cluster category to the original dataset  ##
+input_data$group <- groups
+
+index <- c(1, 2, 3)
+values_num <- c(2, 1, 3)
+values_cat <- c("2_Average", "1_Bad", "3_Good")
+input_data$clust_num <- values_num[match(input_data$group, index)]
+input_data$clust_cat <- values_cat[match(input_data$group, index)]
+
+
+## create a data frame with district, cluster number and cluster category and write it to a csv file.
+perf_data <- data.frame(input_data$District, input_data$clust_num, input_data$clust_cat)
+colnames(perf_data) <-  c("District", "cluster_num", "cluster_cat")
+
+write.csv(perf_data, "clust_info.csv")
+
+```
+
+To do this, we can cut off the tree at the desired number of clusters using cutree function
+
+### **Profiling**
+
+The cluster analysis resulted in 3 clusters. They can be categorised as 'Good', 'Average' and 'Poor' in terms of learning outcomes.
+
+```{r make a table, results="asis", echo=FALSE}
+
+table = matrix(NA, nrow = 3, ncol = 3)
+
+colnames(table) = c("Learning Outcome", "Count", "Districts")
+
+table[,1] = c("Good Performing", "Average Performing", "Poor Performing")
+table[,2] = c(5,6,15)
+table[,3] = c("Dakshina Kannada, Uttara Kannada, Udupi, Shimoga and Hassan", "Bagalkot, Bangalore Rural, Chikmangaluru, Kodagu, Tumkur and Mandya", "Belgaum, Bidar, Bijapur, Bellary, Chamarajnagar, Chitradurga, Davangere, Dharwad, Gadag, Gulbarga, Haveri, Kolar, Koppal, Mysore, Raichur")
+
+library(knitr)
+kable(table, caption = "Table 1: Clustering Of Districts In Terms Of Learning Outcomes")
+
+```
+
+A thematic map of Karnataka showing learning outcomes is constructed using sp, rgdal, raster and tmap packages.
+
+
+```{r  echo = FALSE, message = FALSE, warning = FALSE, comment = NA, fig.width=15, fig.height=10}
+karnataka.rg <- readOGR(dsn = "C:/work/personal_site/research/cluster_edu_karnataka/shapeFile/district_Output.shp", "district_Output", verbose = FALSE)
+
+DIST <- karnataka.rg$DIST
+
+file_csv<- read.csv("clust_info.csv")
+
+# merge on common variable, here called 'key'
+m <- merge(karnataka.rg, file_csv, by.x='DIST', by.y="District")
+m$DIST = as.factor(m$DIST)
+
+shapefile(m, "C:/work/personal_site/research/cluster_edu_karnataka/shapeFile/merged_district_Output.shp", overwrite = TRUE)
+
+karnataka.rg_m <- readOGR(dsn = "C:/work/personal_site/research/cluster_edu_karnataka/shapeFile/merged_district_Output.shp", "merged_district_Output", verbose = FALSE)
+
+tm_shape(karnataka.rg_m) + tm_polygons("clstr_c", aes.palette = "cat", palette = "Blues", contrast = .5, title = "Learning oucomes", legend.show = TRUE ) + 
+tm_layout(  legend.title.size = 1.5,
+            legend.text.size = 1,
+            legend.position = c("left","top"),
+            legend.bg.color = "white",
+            legend.bg.alpha = .1) +
+tm_text("DIST", size = "AREA")
+
+```
+
+The 'Good' Performing cluster has the  best learning outcomes among the three clusters,both in reading and subtraction. It is also characterized by high overall and female literacy, low percentage of SC and ST enrollees and teachers, high OBC enrolment, more female teachers and very few children who are out of school. The cluster also has the highest number of children with English as medium of instruction and private school enrolment. It is at the top with respect to RTE compliance score, although all the clusters are scoring above 80% in this. 
+The 'Average' Performing cluster has learning outcome averages higher than population average but below the "Good" performing cluster.  It scores above average in overall and female literacy, OBC enrolment, and RTE compliance score, Englsih as Medium of instruction, private school enrolment and percentage of female teachers. It is below average in ST enrolment and teachers and children who are not in school. All the other scores are around population averages. 
+The 'Poor' Performing cluster fares the worst in learning outcomes, both reading and subtraction. The cluster is characterized by low overall and female literacy, OBC enrolment, private school enrolment and English as medium of instruction. It has the highest scores in SC and ST enrolment and teachers, male teachers, children not in school and private school enrolment. Though RTE score is lowest among clusters, it is still above 80%.
+All the three clusters have comparable girl to boy ratio. Refer Table 2 for both cluster averages and overall average for each characteristic.
+
+
+```{r makes a table, results="asis", echo=FALSE}
+table = matrix(NA, nrow = 18, ncol = 5)
+
+colnames(table) = c("Characteristics", "Good Performing", "Average Performing", "Poor Performing", "Total")
+
+table[,1] = c("Overall Literacy","Female Literacy","SC Enrolment","ST Enrolment","OBC Enrolment","Muslim Enrolment","Girl Boy Ratio","RTE Compliance Score","SC Teachers","ST Teachers","Teacher Gender Ratio", "Medium Of Instruction (Kannada+)","Medium of Instruction (English)","Private School","Not in School","Children grade III-V can read grade I text","Children grade III-V can subtract","Total Count")
+
+table[,2] = c("83.06","77.36","12.86","3.54","75.06","15.14","0.946","8.65","9.16","3.54","2.26","79.92","19.66","32.54","0.62","74.04","61.9","5")
+
+table[,3] = c("74.71","67.11","19.26","6.4","68.5","12.47","0.94","8.54","12.74","4.44","1.71","82.56","16.91","29.41","0.66","58.63","48.76","7")
+
+table[,4] = c("69.84","61.08","21.82","11.27","56.69","14.68","0.93","8.36","15.82","6","1.14","88.95","9.76","22.91","2.38","50.16","33.84","17")
+
+table[,5] = c("73.29","65.35","19.66","8.76","62.71","14.23","","8.46","13.93","5.2","1.47","85.85","13.2","26.14","1.66","56.32","42.27","29")
+
+kable(table, caption = "Table 2: Cluster Averages and Total Average Of Each Characteristic")
+
+```
+
+```{r}
+
+```
+
+### **Conclusion**
+
+More than half the districts perform poorly with only around 50% grade III-V children able to read grade I text book and barely 33% able to do the subtraction. Even the top performing cluster with an average of 74% in reading 61% in subtraction has a lot of scope for improvement. The RTE compliance is fairly high across the clusters with each averaging above 80%. Literacy rates seem to have an impact on children's performance with overall literacy rate of 83% and female literacy rate of 77% in cluster 3, the top performing cluster. Both dip below 70% in cluster 2, which is at the bottom of the performance chart. The better performing clusters are also characterised by high literacy rates, private schooling and English as Medium of instruction and low percentage of children not in school. It also evident that Infrastructure does not play an important role in determining learning outcomes as the three clusters are evenly matched in terms of compliance score. 
+This project demonstrates how cluster analysis can be used to group districts in Karnataka based on educational inputs and learning outcomes. It helps to extract hidden patterns as described above. This would have been difficult just with descriptive statistics. 
+In future, more data can be collected that would distinguish district performance even better. These include student and teacher attendance, quality of teaching, student's cognitive level etc. 
+
+<button class = "button" onclick="goBack()">Back</button>
+</body>
+</html>
+
+
+
