@@ -66,9 +66,9 @@ library(knitr)
 
 ##### Read data #####
 
-setwd("C:/work/personal_site")
+setwd("C:/work/MyWebsite")
 
-input_data <- read.csv("C:/work/personal_site/research/cluster_edu_karnataka/data/District_Data.csv")
+input_data <- read.csv("C:/work/MyWebSite/research/cluster_edu_karnataka/data/District_Data.csv")
 
 ##### Explore Data #####
 
@@ -273,7 +273,7 @@ A thematic map of Karnataka showing learning outcomes is constructed using sp, r
 
 
 ```{r  echo = FALSE, message = FALSE, warning = FALSE, comment = NA, fig.width=15, fig.height=10}
-karnataka.rg <- readOGR(dsn = "C:/work/personal_site/research/cluster_edu_karnataka/shapeFile/district_Output.shp", "district_Output", verbose = FALSE)
+karnataka.rg <- readOGR(dsn = "C:/work/MyWebsite/research/cluster_edu_karnataka/shapeFile/district_Output.shp", "district_Output", verbose = FALSE)
 
 DIST <- karnataka.rg$DIST
 
@@ -283,9 +283,9 @@ file_csv<- read.csv("clust_info.csv")
 m <- merge(karnataka.rg, file_csv, by.x='DIST', by.y="District")
 m$DIST = as.factor(m$DIST)
 
-shapefile(m, "C:/work/personal_site/research/cluster_edu_karnataka/shapeFile/merged_district_Output.shp", overwrite = TRUE)
+shapefile(m, "C:/work/MyWebsite/research/cluster_edu_karnataka/shapeFile/merged_district_Output.shp", overwrite = TRUE)
 
-karnataka.rg_m <- readOGR(dsn = "C:/work/personal_site/research/cluster_edu_karnataka/shapeFile/merged_district_Output.shp", "merged_district_Output", verbose = FALSE)
+karnataka.rg_m <- readOGR(dsn = "C:/work/MyWebsite/research/cluster_edu_karnataka/shapeFile/merged_district_Output.shp", "merged_district_Output", verbose = FALSE)
 
 tm_shape(karnataka.rg_m) + tm_polygons("clstr_c", aes.palette = "cat", palette = "Blues", contrast = .5, title = "Learning oucomes", legend.show = TRUE ) + 
 tm_layout(  legend.title.size = 1.5,

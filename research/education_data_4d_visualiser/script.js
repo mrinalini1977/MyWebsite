@@ -181,15 +181,10 @@ function draw(data)
 			x_axis.overrideMin  = 0;
 			x_axis.overrideMax = Math.ceil(xData_u);
 		}
-		else if (xVar === "SCR" || xVar === "PTR")
-		{
-			x_axis.overrideMin  = 0;
-			x_axis.overrideMax = 100;
-		}
 		else
 		{
 			x_axis.overrideMin  = 0;
-			x_axis.overrideMax = 1;
+			x_axis.overrideMax = 100;
 		}
 		
 		
@@ -203,15 +198,10 @@ function draw(data)
 			y_axis.overrideMin = Math.floor(yData_l);
 			y_axis.overrideMax = Math.floor(yData_u);
 		}
-		else if (yVar === "SCR" || yVar === "PTR")
-		{
-			y_axis.overrideMin  = 0;
-			y_axis.overrideMax = 100;
-		}
 		else
 		{
 			y_axis.overrideMin = 0;
-			y_axis.overrideMax = 1;
+			y_axis.overrideMax = 100;
 		}
 		
 		y_axis.ticks = 10;
@@ -224,15 +214,10 @@ function draw(data)
 			size_axis.overrideMin = Math.floor(sizeData_l);
 			size_axis.overrideMax = Math.ceil(sizeData_u);	
 		}
-		else if (sizeVar === "SCR" || sizeVar === "PTR")
-		{
-			size_axis.overrideMin  = 0;
-			size_axis.overrideMax = 100;
-		}
 		else
 		{
 			size_axis.overrideMin = 0;
-			size_axis.overrideMax = 1;	
+			size_axis.overrideMax = 100	
 		}
 		
 		size_axis.title = dropdown_size.node().options[dropdown_size.node().selectedIndex].value;
@@ -266,15 +251,10 @@ function draw(data)
 				x_axis.overrideMin  = Math.floor(xData_l);
 				x_axis.overrideMax = Math.ceil(xData_u);
 			}
-			else if (value === "SCR" || value === "PTR")
-			{
-				x_axis.overrideMin  = 0;
-				x_axis.overrideMax = 100;
-			}
 			else
 			{
 				x_axis.overrideMin  = 0;
-				x_axis.overrideMax = 1;
+				x_axis.overrideMax = 100;
 			}
 			
 			x_axis.ticks = 15;
@@ -301,15 +281,10 @@ function draw(data)
 				y_axis.overrideMin = Math.floor(yData_l);
 				y_axis.overrideMax = Math.floor(yData_u);
 			}
-			else if (value === "SCR" || value === "PTR")
-			{
-				y_axis.overrideMin  = 0;
-				y_axis.overrideMax = 100;
-			}
 			else
 			{
 				y_axis.overrideMin = 0;
-				y_axis.overrideMax = 1;
+				y_axis.overrideMax = 100;
 			}
 			
 			y_axis.ticks = 15;
@@ -335,15 +310,10 @@ function draw(data)
 				size_axis.overrideMin = Math.floor(sizeData_l);
 				size_axis.overrideMax = Math.ceil(sizeData_u);	
 			}
-			else if (value === "SCR" || value === "PTR")
-			{
-				size_axis.overrideMin  = 0;
-				size_axis.overrideMax = 100;
-			}
 			else 
 			{
 				size_axis.overrideMin = 0;
-				size_axis.overrideMax = 1;	
+				size_axis.overrideMax = 100;	
 			}
 			size_axis.title = this.value;
             		
