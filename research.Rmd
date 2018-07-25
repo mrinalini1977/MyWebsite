@@ -5,16 +5,21 @@ title: "Research Projects"
 ```{r include=FALSE}
 rmarkdown::render("C:\\work\\personal_site\\research\\cluster_edu_karnataka\\outcome_report.Rmd", "html_document")
 
+rmarkdown::render("C:\\work\\personal_site\\research\\education_data_4d_visualiser\\4d_visualiser.Rmd", "html_document")
+
+rmarkdown::render("C:\\work\\personal_site\\research\\climate_trend_4d_visualiser\\4d_visualiser.Rmd", "html_document")
+
 ```
 <style>
 
 #divImgWrapper {
+display: inline;
 width: 1200px;
 display: block;
 margin: 0px;
 padding: 0px;
 position: relative;
-top: 90px;
+top: 50px;
 height: auto;
 max-width: auto;
 overflow-y: hidden;
@@ -25,7 +30,7 @@ overflow-x:auto;
 display: inline;
 margin: 0px;
 padding: 20px;
-widht: 300px;
+width: 300px;
 height: 200px;
 }
 
@@ -36,6 +41,7 @@ margin-left: 10px;
 padding: 20px;
 color: black;
 width: 300px;
+font-size: medium;
 }
 
 p{
@@ -48,14 +54,45 @@ padding-left: 20px;
 
 <html>
 <body>
-<div id = "divImgWrapper">
+<div id="divImgWrapper">
+<table>
+<tr>
+<td>
 <a href="research/cluster_edu_karnataka/outcome_report.html">
 <div class = "divImage" id = "divImage_1"> 
 <img src = "images/rural_school_kids.jpg" width = "300"> 
-<div class = "divText" id = "divText_1"> <p> Cluster Analysis Of Education Data in Karnataka</p>
+</div>
+<div class = "divText" id = "divText_1"> 
+ Cluster Analysis Of Education Data in Karnataka
+</div>
 </a>
+</td>
+<td width=50></td>
+<td>
+<a href="research/education_data_4d_visualiser/4d_visualiser.html">
+<div class = "divImage" id = "divImage_2"> 
+<img src = "images/4d_visualiser_edu_icon.png" width = "300"> 
 </div>
+<div class = "divText" id = "divText_2"> 
+ 4d Visualisation of Education Data in India
 </div>
+</a>
+</td>
+<td width=50></td>
+<td>
+<a href="research/climate_trend_4d_visualiser/4d_visualiser.html">
+<div class = "divImage" id = "divImage_3"> 
+<img src = "images/4d_visualiser_climate_icon.png" width = "300"> 
 </div>
+<div class = "divText" id = "divText_3"> 
+ 4d Visualisation of Climate Trend in India
+</div>
+</a>
+</td>
+
+</tr>
+</table>
+</div>
+
 </body>
 </html>

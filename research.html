@@ -20,9 +20,11 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -31,10 +33,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -89,6 +93,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -217,12 +224,13 @@ $(document).ready(function () {
 <style>
 
 #divImgWrapper {
+display: inline;
 width: 1200px;
 display: block;
 margin: 0px;
 padding: 0px;
 position: relative;
-top: 90px;
+top: 50px;
 height: auto;
 max-width: auto;
 overflow-y: hidden;
@@ -233,7 +241,7 @@ overflow-x:auto;
 display: inline;
 margin: 0px;
 padding: 20px;
-widht: 300px;
+width: 300px;
 height: 200px;
 }
 
@@ -244,6 +252,7 @@ margin-left: 10px;
 padding: 20px;
 color: black;
 width: 300px;
+font-size: medium;
 }
 
 p{
@@ -256,16 +265,44 @@ padding-left: 20px;
 <html>
 <body>
 <div id="divImgWrapper">
+<table>
+<tr>
+<td>
 <a href="research/cluster_edu_karnataka/outcome_report.html">
 <div id="divImage_1" class="divImage">
-<img src = "images/rural_school_kids.jpg" width = "300">
+<p><img src = "images/rural_school_kids.jpg" width = "300"></p>
+</div>
 <div id="divText_1" class="divText">
-<p>
-Cluster Analysis Of Education Data in Karnataka
-</p>
-<p></a></p>
+<p>Cluster Analysis Of Education Data in Karnataka</p>
 </div>
+</a>
+</td>
+<td width="50">
+</td>
+<td>
+<a href="research/education_data_4d_visualiser/4d_visualiser.html">
+<div id="divImage_2" class="divImage">
+<p><img src = "images/4d_visualiser_edu_icon.png" width = "300"></p>
 </div>
+<div id="divText_2" class="divText">
+<p>4d Visualisation of Education Data in India</p>
+</div>
+</a>
+</td>
+<td width="50">
+</td>
+<td>
+<a href="research/climate_trend_4d_visualiser/4d_visualiser.html">
+<div id="divImage_3" class="divImage">
+<p><img src = "images/4d_visualiser_climate_icon.png" width = "300"></p>
+</div>
+<div id="divText_3" class="divText">
+<p>4d Visualisation of Climate Trend in India</p>
+</div>
+</a>
+</td>
+</tr>
+</table>
 </div>
 </body>
 </html>

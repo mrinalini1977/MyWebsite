@@ -1,3 +1,4 @@
+
 <html>
 <style>
 .button {
@@ -8,6 +9,14 @@
 
   }
   </style>
+
+<style type="text/css">
+.main-container {
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
 
 <body>
 
@@ -21,9 +30,7 @@ function goBack() {
 
 
 
-# **Cluster Analysis Of Education Data In Karnataka**
-Author: Mrinalini Kabbur
-Date: November 2, 2017
+## **Cluster Analysis Of Education Data In Karnataka**
 
 ### **Introduction**
 Primary school Enrolment in India has seen a big increase from 79% in 2000 and to 93% in 2014.
