@@ -10,7 +10,7 @@ function draw(data)
 					"Schools With Drinking Water(%)": "Drinking_Water", "Child(5-16) Cannot Read(%)": "Child_Read_Nothing", "Child(5-16) Highest Read Level - Letter(%)":"Child_Read_Highest_Letter",
 					"Child(5-16) Highest Read Level - Word(%)": "Child_Read_Highest_Letter", "Child(5-16) Highest Read Level - Std 1 Text(%)": "Child_Read_Highest_Std1text", 
 					"Child(5-16) Highest Read Level - Std2 Text(%)": "Child_Read_Highest_Std2text",
-					"Child(5-16) Cannot Identify Numbers(%)": "Child_Math_Nothing", "Child(5-16) Highest Math - Numbers 1-9(%)": "Child_Math_Highest_Number_1to9", 
+					"Child(5-16) Cannot Identify Numbers(%)": "Child_Math_Nothing", "Child(5-16) Highest Math - Numbers 1-9(%)": "Child_Math_Highest_Number1to9", 
 					"Child(5-16) Highest Math - Numbers 11 to 99(%)": "Child_Math_Highest_Number11to99", "Child(5-16) Highest Math - Subtraction(%)" : "Child_Math_Highest_Subtraction",
 					"Child(5-16) Highest Math - Division(%)": "Child_Math_Highest_Division"};
 					
@@ -19,7 +19,7 @@ function draw(data)
 					"Schools With Drinking Water(%)": "Drinking_Water", "Child(5-16) Cannot Read(%)": "Child_Read_Nothing", "Child(5-16) Highest Read Level - Letter(%)":"Child_Read_Highest_Letter",
 					"Child(5-16) Highest Read Level - Word(%)": "Child_Read_Highest_Letter", "Child(5-16) Highest Read Level - Std 1 Text(%)": "Child_Read_Highest_Std1text", 
 					"Child(5-16) Highest Read Level - Std2 Text(%)": "Child_Read_Highest_Std2text",
-					"Child(5-16) Cannot Identify Numbers(%)": "Child_Math_Nothing", "Child(5-16) Highest Math - Numbers 1-9(%)": "Child_Math_Highest_Number_1to9", 
+					"Child(5-16) Cannot Identify Numbers(%)": "Child_Math_Nothing", "Child(5-16) Highest Math - Numbers 1-9(%)": "Child_Math_Highest_Number1to9", 
 					"Child(5-16) Highest Math - Numbers 11 to 99(%)": "Child_Math_Highest_Number11to99", "Child(5-16) Highest Math - Subtraction(%)" : "Child_Math_Highest_Subtraction",
 					"Child(5-16) Highest Math - Division(%)": "Child_Math_Highest_Division"};
 					
@@ -30,7 +30,7 @@ function draw(data)
 						"Child(5-16) Highest Read Level - Letter(%)":"Child_Read_Highest_Letter",
 						"Child(5-16) Highest Read Level - Word(%)": "Child_Read_Highest_Letter", "Child(5-16) Highest Read Level - Std 1 Text(%)": "Child_Read_Highest_Std1text", 
 						"Child(5-16) Highest Read Level - Std2 Text(%)": "Child_Read_Highest_Std2text",
-						"Child(5-16) Cannot Identify Numbers(%)": "Child_Math_Nothing", "Child(5-16) Highest Math - Numbers 1-9(%)": "Child_Math_Highest_Number_1to9", 
+						"Child(5-16) Cannot Identify Numbers(%)": "Child_Math_Nothing", "Child(5-16) Highest Math - Numbers 1-9(%)": "Child_Math_Highest_Number1to9", 
 						"Child(5-16) Highest Math - Numbers 11 to 99(%)": "Child_Math_Highest_Number11to99", "Child(5-16) Highest Math - Subtraction(%)" : "Child_Math_Highest_Subtraction",
 						"Child(5-16) Highest Math - Division(%)": "Child_Math_Highest_Division"};
 					
